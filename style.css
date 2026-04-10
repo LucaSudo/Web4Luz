@@ -15,7 +15,7 @@ h1,h2,h3{
 
 p{
     margin: 0;
-    line-height: 1,7;
+    line-height: 1.7;
 }
 
 a{
@@ -240,7 +240,7 @@ header{
     box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 
-.tarjeta-producto :hover{
+.tarjeta-producto:hover{
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
     border-color: #D4537E;
 }
@@ -253,7 +253,7 @@ header{
     font-size: 50px;
 }
 
-.tarjeta-informacion{
+.tarjeta-info{
     padding: 12px;
 }
 .tarjeta-nombre{
@@ -261,12 +261,12 @@ header{
     font-size: 14px;
     margin-bottom: 8px;
 }
-.tajeta-categoria{
+.tarjeta-categoria{
     font-size: 12px;
     color: #aaaaaa;
     margin-bottom: 4px;
 }
-.tarjera-precio{
+.tarjeta-precio{
     color: #D4537E;
     font-weight: bold;
     font-size: 16px;
@@ -284,7 +284,7 @@ header{
     flex-wrap: wrap;
     max-width: 800px;
 }
-.detalle-imagen{
+.detalle-img{
     flex: 1;
     min-width: 250px;
     border-radius: 16px;
@@ -333,4 +333,104 @@ header{
 }
 .btn-carrito{
     width: 100%;
+}
+
+.carrito-contenedor{
+    max-width: 560px;
+}
+.carrito-tabla th{
+text-align: left;
+padding: 8px;
+color: #aaaaaa;
+font-weight: normal;
+border-bottom: 1px solid #eeeeee;
+}
+
+.carrito-tabla td{
+    padding: 14px 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+.carrito-tabla .col-cant{
+    align-items: center;
+}
+.carrito-tabla .col-precio{
+    text-align: right;
+}
+.carrito-total{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 2px solid #dddddd;
+}
+
+.carrito-total-label{
+    font-size: 16px;
+    font-weight: bold;
+}
+.carrito-total-importe{
+    font-size: 22px;
+    font-weight: bold;
+    color: #D4537E;
+}
+
+.btn-pago{
+    width: 100%;
+    margin-top: 20px;
+    padding: 16px;
+    font-size: 15px;
+    border-radius: 16px;
+}
+
+.footer{
+    background-color: #1a1a1a;
+    color: #cccccc;
+    padding: 48px 24px;
+    font-size: 13px;
+}
+
+.footer-grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.footer-columna{
+    min-width: 140px;
+}
+
+.footer-titulo{
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 16px;
+}
+
+.footer-columna p{
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.footer-columna a{
+    color: #aaaaaa;
+}
+
+.footer-columna a:hover{
+    color: #ffffff;
+}
+
+.footer-linea{
+    border: none;
+    border-top: 1px solid #333333;
+    margin: 40px 0 24px;
+}
+
+.footer-copyright{
+    text-align: center;
+    color: #555555;
+    font-size: 12px;
 }
