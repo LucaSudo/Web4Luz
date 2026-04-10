@@ -1,0 +1,133 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #333333;
+    font-size: 16px;
+}
+
+h1,h2,h3{
+    margin: 0;;
+}
+
+p{
+    margin: 0;
+    line-height: 1,7;
+}
+
+a{
+    text-decoration: none;
+}
+
+header{
+    background-color: #1a1a1a;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logo{
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.header-nav{
+    display: flex;
+    gap: 24px;
+}
+
+.header-nav a{
+    color: #ffffff;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+.header-nav a:hover{
+    color: #F4C0D1;
+}
+
+.header-acciones{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.btn-rosa{
+    background-color: #D4537E;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+.btn-rosa:hover{
+    background-color: #993556;
+}
+
+.btn-rosa-grande{
+    background-color: #D4537E;
+    color:#ffffff;
+    border: none;
+    padding: 16px 36px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-rosa-grande:hover{
+    background-color: #993556;
+}
+
+.btn-outline{
+    background-color: #ffffff;
+    color: #444444;
+    border: 1px solid #dddddd;
+    padding: 7px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.btn-outline:hover{
+    border-color: #D4537E;
+    color: #D4537E;
+}
+
+.btn-outline-activo {
+    background-color: #D4537E;
+    color: #ffffff;
+    border: none;
+    padding: 7px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+}
+.btn-outline-activo:hover{
+    background-color: #993556;
+}
+
+.btn-talle:hover{
+    border-color: #D4537E;
+}
+
+.btn-talle-activo{
+    border: 2px solid #D4537E;
+    background-color: #ffffff;
+    padding: 7px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #D4537E;
+    font-weight: bold;
+    
+}
+

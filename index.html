@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luzbell-tu tienda fav</title>
+</head>
+<body>
+    <header class="header">
+        <h1 class="header-logo">Luzbell</h1>
+        <nav class="header-nav">
+            <a href="#catalogo">Catalogo</a>
+            <a href="#novedades">Novedades</a>
+            <a href="#ofertas">Ofertas</a>
+        </nav>
+        <div class="header-acciones">
+            <button class="btn-rosa">Mi cuenta</button>
+            <button class="btn-rosa">Carrito (0)</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <p class="hero-subtitulo">Nueva coleccion</p>
+        <h2 class="hero-titulo">Otoño · Invierno</h2>
+        <p class="hero-descripcion">Las prendas mas lindas de la temporada, seleccionadas especialmente para vos.</p>
+
+        <a href="#catalogo" class="btn-rosa-grande">Ver colección</a>
+    </section>
+
+    <section class="seccion-fondo-blanco">
+        <h2 class="seccion-titulo-centrado">Categorias</h2>
+        <div class="categorias-grid">
+            <div class="categoria-item">
+                <div class="categoria-circulo circulo-rosa">👗</div>
+                <p class="categoria-nombre">Vestidos/Catsuit</p>
+            </div>
+            <div class="categoria-item">
+                <div class="categoria-circulo circulo-azul">👕</div>
+                <p class="categoria-nombre">Remeras/Top</p>
+            </div>
+            <div class="categoria-item">
+                <div class="categoria-circulo circulo-amarillo">👖</div>
+                <p class="categoria-nombre">Pantalones/Shorts/Bermudas</p>
+            </div>
+            <div class="categoria-item">
+                <div class="categoria-circulo circulo-amarillo">🧥</div>
+                <p class="categoria-nombre">Accesorios</p></div>
+        </div>
+    </section>
+
+    <section id="catalogo" class="seccion-fondo-gris">
+        <h2 class="seccion-titulo">Catalogo</h2>
+        <p class="seccion-subtitulo">Mostrando 4 productos</p>
+
+        <div class="filtros">
+            <button class="btn-outline-activo">Todos</button>
+            <button class="btn-outline">Vestidos</button>
+            <button class="btn-outline">Remeras</button>
+            <button class="btn-outline">Pantalones</button>
+            <button class="btn-outline">Accesorios</button>
+        </div>
+
+        <div class="productos-grid">
+            <div class="tarjeta-producto">
+             <div class="tarjeta-imagen bg-rosa">👗</div>
+             <div class="tarjeta-info"></div>
+             <p class="tarjeta-nombre">Vestido Floral</p>
+             <p class="tarjeta-categoria">Vestidos</p>
+             <p class="tarjeta-precio">$29.99</p>
+             <button class="btn-rosa">Agregar al carrito</button>
+            </div>
+        </div>
+
+        <div class="tarjeta-producto">
+            <div class="tarjeta-imagen bg-azul">👚</div>
+                <div class="tarjeta-info">
+                    <p class="tarjeta-nombre">Remera oversize</p>
+                    <p class="tarjeta-categoria">Remeras</p>
+                    <p class="tarjeta-precio">$8.500</p>
+                    <button class="btn-rosa">Agregar al carrito</button>
+                </div>
+           </div>
+         </div>
+
+         <div class="tarjeta-producto">
+            <div class="tarjeta-imagen bg-verde">👖</div>
+                <div class="tarjeta-info">
+                    <p class="tarjeta-nombre">Pantalón palazzo</p>
+                    <p class="tarjeta-categoria">Pantalones</p>
+                    <p class="tarjeta-precio">$12.000</p>
+                    <button class="btn-rosa">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>  
+
+        <div class="tarjeta-producto">
+             <div class="tarjeta-imagen bg-amarillo">👜</div>
+                <div class="tarjeta-info">
+                    <p class="tarjeta-nombre">Cartera de cuero</p>
+                     <p class="tarjeta-categoria">Accesorios</p>
+                     <p class="tarjeta-precio">$22.000</p>
+                     <button class="btn-rosa">Agregar al carrito</button>
+                    </div>
+        </div>
+    </section>
+
+    <section id="novedades" class="seccion-fondo-blanco borde-superior">
+        <p class="detalle-categoria">Vestidos</p>
+        <h2 class="seccion-titulo">Detalle de producto</h2>
+
+        <div class="detalle-contenedor">
+            <div class="detalle-img bg-rosa">👗</div>
+            <div class="detalle-info">
+                <h3 class="detalle-nombre">Vestido Floral manga larga</h3>
+                <p class="detalle-precio">$29.99</p>
+
+                <p class="detalle-label">Selecciona tu talle:</p>
+                <div class="talles">
+                    <button class="btn-talle">XS</button>
+                    <button class="btn-talle btn-talle-activo">S</button>
+                    <button class="btn-talle">M</button>
+                    <button class="btn-talle">L</button>
+                    <button class="btn-talle">XL</button>
+                </div><br>
+                <button class="btn-rosa-grande">Agregar al carrito</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="seccion-fondo-gris borde-superior">
+        <h2 class="seccion-titulo">Tu carrito</h2>
+        <div class="carrito-contenedor">
+            <table class="carrito-tabla">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th class="col-cant">Cant.</th>
+                        <th class="col-precio">Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Vestido Floral - talle S</td>
+                        <td class="col-cant">1</td>
+                        <td class="col-precio">$29.99</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="carrito-total">
+                <span class="carrito-total-label">Total</span>
+                <span class="carrito-total-importe">$29.99</span>
+            </div>
+            <button class="btn-rosa btn-pago">Continuar con el pago</button>
+        </div>
+    </section>
+    <footer id="ofertas" class="footer">
+ 
+    <div class="footer-grid">
+ 
+      <div class="footer-columna">
+        <p class="footer-titulo">Luzbell</p>
+        <p>Ropa de mujer con estilo</p>
+        <p>Reconquista, Santa Fe</p>
+        <p>Argentina</p>
+      </div>
+ 
+      <div class="footer-columna">
+        <p class="footer-titulo">Tienda</p>
+        <p><a href="#catalogo">Catálogo</a></p>
+        <p><a href="#novedades">Novedades</a></p>
+        <p><a href="#ofertas">Ofertas</a></p>
+      </div>
+ 
+      <div class="footer-columna">
+        <p class="footer-titulo">Contacto</p>
+        <p>WhatsApp: 341 000-0000</p>
+        <p>Instagram: @Luzbell.showroom</p>
+        <p>info@luzbell.com</p>
+      </div>
+ 
+      <div class="footer-columna">
+        <p class="footer-titulo">Medios de pago</p>
+        <p>Mercado Pago</p>
+        <p>Tarjeta de crédito</p>
+        <p>Débito</p>
+        <p>Transferencia</p>
+      </div>
+ 
+    </div>
+ 
+    <hr class="footer-linea">
+    
+ 
+    <p class="footer-copyright">© 2025 Luzbell — Todos los derechos reservados</p>
+ 
+  </footer>
+</body>
+</html>
