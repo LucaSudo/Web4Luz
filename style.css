@@ -128,6 +128,209 @@ header{
     font-size: 13px;
     color: #D4537E;
     font-weight: bold;
-    
 }
 
+.hero{
+    background-color: #fce8f0;
+    padding: 80px 24px;
+    text-align: center;
+}
+
+.hero-subtitulo{
+   font-size: 13px;
+   letter-spacing: 3px;
+   color: #993556;
+   margin-bottom: 12px;
+   text-transform: uppercase;
+}
+
+.hero-titulo{
+    font-size: 42px;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+    font-weight: 300;
+}
+
+.hero-descripcion{
+    font-size: 16px;
+    color: #666666;
+    margin-bottom: 32px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.seccion{
+    padding: 40px 24px;
+}
+.seccion-titulo{
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+.seccion-subtitulo{
+    font-size: 14px;
+    color: #888888;
+    margin-bottom: 24px;
+}
+
+.fondo-gris{
+    background-color: #fafafa;
+}
+
+.fondo-blanco{
+    background-color: #ffffff;
+}
+
+.borde-superior{
+    border-top: 1px solid #eeeeee;
+}
+
+.categorias-grid{
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.categoria-item{
+    text-align: center;
+    cursor: pointer;
+}
+
+.categoria-circulo{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    margin: 0 auto 8px;
+}
+
+.categoria-nombre{
+    font-size: 13px;
+    color: #555555;
+}
+
+.circulo-rosa {background-color: #fce8f0;}
+.circulo-azul {background-color: #e0f0ff;}
+.circulo-verde {background-color: #e0ffe0;}
+.circulo-amarillo {background-color: #fff0e0;}
+
+.filtros{
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.productos-grid{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.tarjeta-producto{
+    border: 1px solid #eeeeee;
+    border-radius: 12px;
+    padding: 16px;
+    width: 200px;
+    overflow: hidden;
+    background-color: #ffffff;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.tarjeta-producto :hover{
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    border-color: #D4537E;
+}
+
+.tarjeta-imagen{
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+}
+
+.tarjeta-informacion{
+    padding: 12px;
+}
+.tarjeta-nombre{
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+.tajeta-categoria{
+    font-size: 12px;
+    color: #aaaaaa;
+    margin-bottom: 4px;
+}
+.tarjera-precio{
+    color: #D4537E;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.bg-rosa{background-color: #f5e0ea;}
+.bg-azul{background-color: #e0eaf5;}
+.bg-verde{background-color: #e0f5e8;}
+.bg-amarillo{background-color: #f5f0e0;}
+
+.detalle-contenedor{
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    max-width: 800px;
+}
+.detalle-imagen{
+    flex: 1;
+    min-width: 250px;
+    border-radius: 16px;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 90px;
+}
+
+.detalle-informacion{
+    flex: 1;
+    min-width: 250px;
+}
+.detalle-categoria{
+    font-size: 12px;
+    color: #aaaaaa;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+}
+.detalle-nombre{
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 8x;
+}
+.detalle-precio{
+    font-size: 26px;
+    font-weight: bold;
+    color: #D4537E;
+    margin-bottom: 20px;
+}
+.detalle-label{
+    font-size: 14px;
+    color: #555555;
+    margin-bottom: 10px;
+}
+.talles{
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+.detalle-descripcion{
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 24px;
+}
+.btn-carrito{
+    width: 100%;
+}
