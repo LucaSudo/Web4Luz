@@ -1,30 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luzbell-tu tienda fav</title>
 </head>
 <body>
     <header class="header">
-        <h1 class="header-logo">Luzbell</h1>
+        <h1 class="header-logo"><img src="Img/Logotienda.png" alt="Luzbell"></h1>
+
+        <!-- Navegación desktop -->
         <nav class="header-nav">
             <a href="#catalogo">Catalogo</a>
             <a href="#novedades">Novedades</a>
             <a href="#ofertas">Ofertas</a>
         </nav>
+
         <div class="header-acciones">
             <button class="btn-rosa">Mi cuenta</button>
             <button class="btn-rosa">Carrito (0)</button>
         </div>
+
+        <!-- Carrito visible solo en móvil -->
+        <button class="btn-rosa btn-carrito-movil">🛒 Carrito (0)</button>
+
+        <!-- Botón hamburguesa (solo móvil) -->
+        <button class="btn-hamburguesa" id="btnMenu" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </header>
+
+    <!-- Menú móvil desplegable -->
+    <div class="menu-movil" id="menuMovil">
+        <a href="#catalogo" onclick="cerrarMenu()">Catalogo</a>
+        <a href="#novedades" onclick="cerrarMenu()">Novedades</a>
+        <a href="#ofertas" onclick="cerrarMenu()">Ofertas</a>
+        <a href="#" onclick="cerrarMenu()" class="menu-movil-cuenta">👤 Mi cuenta</a>
+    </div>
 
     <section class="hero">
         <p class="hero-subtitulo">Nueva coleccion</p>
         <h2 class="hero-titulo">Otoño · Invierno</h2>
         <p class="hero-descripcion">Las prendas mas lindas de la temporada, seleccionadas especialmente para vos.</p>
-
         <a href="#catalogo" class="btn-rosa-grande">Ver colección</a>
     </section>
 
@@ -41,11 +61,12 @@
             </div>
             <div class="categoria-item">
                 <div class="categoria-circulo circulo-verde">👖</div>
-                <p class="categoria-nombre">Pantalones/Shorts/Bermudas</p>
+                <p class="categoria-nombre">Pantalones/Shorts</p>
             </div>
             <div class="categoria-item">
                 <div class="categoria-circulo circulo-amarillo">🧥</div>
-                <p class="categoria-nombre">Accesorios</p></div>
+                <p class="categoria-nombre">Accesorios</p>
+            </div>
         </div>
     </section>
 
@@ -62,7 +83,7 @@
         </div>
 
         <div class="productos-grid">
-            <div class="tarjeta-producto">
+            <div class="tarjeta-producto" data-categoria="Vestidos">
                 <div class="tarjeta-imagen bg-rosa">👗</div>
                 <div class="tarjeta-info">
                     <p class="tarjeta-nombre">Vestido Floral</p>
@@ -72,7 +93,7 @@
                 </div>
             </div>
 
-            <div class="tarjeta-producto">
+            <div class="tarjeta-producto" data-categoria="Remeras">
                 <div class="tarjeta-imagen bg-azul">👚</div>
                 <div class="tarjeta-info">
                     <p class="tarjeta-nombre">Remera oversize</p>
@@ -82,7 +103,7 @@
                 </div>
             </div>
 
-            <div class="tarjeta-producto">
+            <div class="tarjeta-producto" data-categoria="Pantalones">
                 <div class="tarjeta-imagen bg-verde">👖</div>
                 <div class="tarjeta-info">
                     <p class="tarjeta-nombre">Pantalón palazzo</p>
@@ -92,7 +113,7 @@
                 </div>
             </div>
 
-            <div class="tarjeta-producto">
+            <div class="tarjeta-producto" data-categoria="Accesorios">
                 <div class="tarjeta-imagen bg-amarillo">👜</div>
                 <div class="tarjeta-info">
                     <p class="tarjeta-nombre">Cartera de cuero</p>
@@ -103,96 +124,37 @@
             </div>
         </div>
     </section>
-
-    <section id="novedades" class="seccion-fondo-blanco borde-superior">
-        <p class="detalle-categoria">Vestidos</p>
-        <h2 class="seccion-titulo">Detalle de producto</h2>
-
-        <div class="detalle-contenedor">
-            <div class="detalle-img bg-rosa">👗</div>
-            <div class="detalle-info">
-                <h3 class="detalle-nombre">Vestido Floral manga larga</h3>
-                <p class="detalle-precio">$29.99</p>
-
-                <p class="detalle-label">Selecciona tu talle:</p>
-                <div class="talles">
-                    <button class="btn-talle">XS</button>
-                    <button class="btn-talle btn-talle-activo">S</button>
-                    <button class="btn-talle">M</button>
-                    <button class="btn-talle">L</button>
-                    <button class="btn-talle">XL</button>
-                </div><br>
-                <button class="btn-rosa-grande">Agregar al carrito</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="seccion-fondo-gris borde-superior">
-        <h2 class="seccion-titulo">Tu carrito</h2>
-        <div class="carrito-contenedor">
-            <table class="carrito-tabla">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th class="col-cant">Cant.</th>
-                        <th class="col-precio">Precio</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Vestido Floral - talle S</td>
-                        <td class="col-cant">1</td>
-                        <td class="col-precio">$29.99</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="carrito-total">
-                <span class="carrito-total-label">Total</span>
-                <span class="carrito-total-importe">$29.99</span>
-            </div>
-            <button class="btn-rosa btn-pago">Continuar con el pago</button>
-        </div>
-    </section>
     <footer id="ofertas" class="footer">
- 
-    <div class="footer-grid">
- 
-      <div class="footer-columna">
-        <p class="footer-titulo">Luzbell</p>
-        <p>Ropa de mujer con estilo</p>
-        <p>Reconquista, Santa Fe</p>
-        <p>Argentina</p>
-      </div>
- 
-      <div class="footer-columna">
-        <p class="footer-titulo">Tienda</p>
-        <p><a href="#catalogo">Catálogo</a></p>
-        <p><a href="#novedades">Novedades</a></p>
-        <p><a href="#ofertas">Ofertas</a></p>
-      </div>
- 
-      <div class="footer-columna">
-        <p class="footer-titulo">Contacto</p>
-        <p>WhatsApp: 341 000-0000</p>
-        <p>Instagram: @Luzbell.showroom</p>
-        <p>info@luzbell.com</p>
-      </div>
- 
-      <div class="footer-columna">
-        <p class="footer-titulo">Medios de pago</p>
-        <p>Mercado Pago</p>
-        <p>Tarjeta de crédito</p>
-        <p>Débito</p>
-        <p>Transferencia</p>
-      </div>
- 
-    </div>
- 
-    <hr class="footer-linea">
-    
- 
-    <p class="footer-copyright">© 2025 Luzbell — Todos los derechos reservados</p>
- 
-  </footer>
+        <div class="footer-grid">
+            <div class="footer-columna">
+                <p class="footer-titulo">Luzbell</p>
+                <p>Ropa de mujer con estilo</p>
+                <p>Reconquista, Santa Fe</p>
+                <p>Argentina</p>
+            </div>
+            <div class="footer-columna">
+                <p class="footer-titulo">Tienda</p>
+                <p><a href="#catalogo">Catálogo</a></p>
+                <p><a href="#novedades">Novedades</a></p>
+                <p><a href="#ofertas">Ofertas</a></p>
+            </div>
+            <div class="footer-columna">
+                <p class="footer-titulo">Contacto</p>
+                <p><a href="https://wa.me/5493482233582" target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
+                <p><a href="https://www.instagram.com/luzbell_showroom?igsh=bGRrNGVjM2cwanR0" target="_blank" rel="noopener noreferrer">Instagram</a></p>
+                <p><a href="/cdn-cgi/l/email-protection#b9f5ccc3dfd5d8d4d88ef9ded4d8d0d597dad6d4">Correo</a></p>
+            </div>
+            <div class="footer-columna">
+                <p class="footer-titulo">Medios de pago</p>
+                <p>Mercado Pago</p>
+                <p>Tarjeta de crédito</p>
+                <p>Débito</p>
+                <p>Transferencia</p>
+            </div>
+        </div>
+        <hr class="footer-linea">
+        <p class="footer-copyright">© 2025 Luzbell — Todos los derechos reservados</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
