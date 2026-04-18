@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
-    <title>Luzbell-tu tienda fav</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luzbell — tu tienda fav</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="header">
@@ -18,7 +18,7 @@
         </nav>
 
         <div class="header-acciones">
-            <button class="btn-rosa">Mi cuenta</button>
+            <button class="btn-rosa" id="btnMiCuenta">Mi cuenta</button>
             <button class="btn-rosa" id="contadorCarrito">Carrito (0)</button>
         </div>
 
@@ -82,13 +82,26 @@
         </div>
     </section>
 
+    <!-- MODAL MI CUENTA -->
+    <div class="modal-overlay" id="modalCuenta">
+        <div class="modal-contenido modal-pequeno">
+            <div class="modal-header">
+                <h2 id="cuentaTitulo">Mi cuenta</h2>
+                <button class="modal-cerrar" id="btnCerrarCuenta">✕</button>
+            </div>
+            <div id="cuentaContenido">
+                <!-- Se llena dinámicamente desde script.js -->
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL DEL CATÁLOGO -->
     <div class="modal-overlay" id="modalCatalogo">
         <div class="modal-contenido">
             <div class="modal-header">
                 <div>
                     <h2 class="seccion-titulo">Catálogo</h2>
-                    <p class="seccion-subtitulo" id="modalSubtitulo">Mostrando 4 productos</p>
+                    <p class="seccion-subtitulo" id="modalSubtitulo">Cargando...</p>
                 </div>
                 <button class="modal-cerrar" id="btnCerrarModal">✕</button>
             </div>
@@ -100,42 +113,7 @@
                 <button class="btn-outline">Accesorios</button>
             </div>
             <div class="productos-grid" id="modalProductos">
-                <div class="tarjeta-producto" data-categoria="Vestidos" data-nombre="Vestido Floral" data-precio="12000">
-                    <div class="tarjeta-imagen bg-rosa">👗</div>
-                    <div class="tarjeta-info">
-                        <p class="tarjeta-nombre">Vestido Floral</p>
-                        <p class="tarjeta-categoria">Vestidos</p>
-                        <p class="tarjeta-precio">$12.000</p>
-                        <button class="btn-rosa">Agregar al carrito</button>
-                    </div>
-                </div>
-                <div class="tarjeta-producto" data-categoria="Remeras" data-nombre="Remera oversize" data-precio="8500">
-                    <div class="tarjeta-imagen bg-azul">👚</div>
-                    <div class="tarjeta-info">
-                        <p class="tarjeta-nombre">Remera oversize</p>
-                        <p class="tarjeta-categoria">Remeras</p>
-                        <p class="tarjeta-precio">$8.500</p>
-                        <button class="btn-rosa">Agregar al carrito</button>
-                    </div>
-                </div>
-                <div class="tarjeta-producto" data-categoria="Pantalones" data-nombre="Pantalón palazzo" data-precio="12000">
-                    <div class="tarjeta-imagen bg-verde">👖</div>
-                    <div class="tarjeta-info">
-                        <p class="tarjeta-nombre">Pantalón palazzo</p>
-                        <p class="tarjeta-categoria">Pantalones</p>
-                        <p class="tarjeta-precio">$12.000</p>
-                        <button class="btn-rosa">Agregar al carrito</button>
-                    </div>
-                </div>
-                <div class="tarjeta-producto" data-categoria="Accesorios" data-nombre="Cartera de cuero" data-precio="22000">
-                    <div class="tarjeta-imagen bg-amarillo">👜</div>
-                    <div class="tarjeta-info">
-                        <p class="tarjeta-nombre">Cartera de cuero</p>
-                        <p class="tarjeta-categoria">Accesorios</p>
-                        <p class="tarjeta-precio">$22.000</p>
-                        <button class="btn-rosa">Agregar al carrito</button>
-                    </div>
-                </div>
+                <!-- Se llena dinámicamente -->
             </div>
         </div>
     </div>
@@ -201,6 +179,14 @@
             <button id="btnCerrarCarrito">✕</button>
         </div>
         <div class="carrito-items" id="carritoItems"></div>
+        
+        <div class="seccion-favoritos-carrito">
+            <h3>❤️ Mis favoritos</h3>
+            <div id="favoritosItems">
+                <p class="vacio" style="font-size: 13px; color: #aaa;">No tenés favoritos guardados.</p>
+            </div>
+        </div>
+
         <p>¡Envio a coordinar!</p>
         <div class="carrito-panel-footer">
             <p>Total <span id="carritoTotal">$0</span></p>
