@@ -36,9 +36,9 @@
     <!-- Menú móvil desplegable -->
     <div class="menu-movil" id="menuMovil">
         <a href="#catalogo" onclick="cerrarMenu()">Catalogo</a>
-        <a href="#novedades" onclick="cerrarMenu()">Novedades</a>
+        <a href="#seccion-slider" onclick="cerrarMenu()">Novedades</a>
         <a href="#ofertas" onclick="cerrarMenu()">Ofertas</a>
-        <a href="#" onclick="cerrarMenu()" class="menu-movil-cuenta">👤 Mi cuenta</a>
+        <a href="#" onclick="cerrarMenu(); abrirModalCuenta()" class="menu-movil-cuenta">👤 Mi cuenta</a>
     </div>
 
     <section class="hero">
@@ -48,26 +48,22 @@
         <button class="btn-rosa-grande" id="btnVerColeccion">Ver colección</button>
     </section>
 
-    <section class="seccion-slider">
+    <section class="seccion-slider" id="seccion-slider">
         <h2 class="seccion-titulo-centrado">Colección</h2>
         <div class="slider-wrapper">
             <button class="slider-btn slider-btn-prev" id="sliderPrev">&#8249;</button>
             <div class="slider-track-container">
                 <div class="slider-track" id="sliderTrack">
-                    <div class="slide">
-                        <img src="Img/slider1.jpg" alt="Colección Luzbell" onerror="this.style.display='none';this.parentElement.classList.add('slide-placeholder')">
+                    <div class="slide slide-placeholder">
                         <div class="slide-caption">Vestidos &amp; Catsuit</div>
                     </div>
-                    <div class="slide">
-                        <img src="Img/slider2.jpg" alt="Colección Luzbell" onerror="this.style.display='none';this.parentElement.classList.add('slide-placeholder')">
+                    <div class="slide slide-placeholder">
                         <div class="slide-caption">Remeras &amp; Tops</div>
                     </div>
-                    <div class="slide">
-                        <img src="Img/slider3.jpg" alt="Colección Luzbell" onerror="this.style.display='none';this.parentElement.classList.add('slide-placeholder')">
+                    <div class="slide slide-placeholder">
                         <div class="slide-caption">Pantalones &amp; Shorts</div>
                     </div>
-                    <div class="slide">
-                        <img src="Img/slider4.jpg" alt="Colección Luzbell" onerror="this.style.display='none';this.parentElement.classList.add('slide-placeholder')">
+                    <div class="slide slide-placeholder">
                         <div class="slide-caption">Accesorios</div>
                     </div>
                 </div>
@@ -113,6 +109,22 @@
                 <button class="btn-outline">Accesorios</button>
             </div>
             <div class="productos-grid" id="modalProductos">
+                <!-- Se llena dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE OFERTAS -->
+    <div class="modal-overlay" id="modalOfertas">
+        <div class="modal-contenido">
+            <div class="modal-header">
+                <div>
+                    <h2 class="seccion-titulo">Ofertas</h2>
+                    <p class="seccion-subtitulo" id="ofertasSubtitulo">Cargando...</p>
+                </div>
+                <button class="modal-cerrar" id="btnCerrarOfertas">✕</button>
+            </div>
+            <div class="productos-grid" id="ofertasProductos">
                 <!-- Se llena dinámicamente -->
             </div>
         </div>
@@ -180,13 +192,6 @@
         </div>
         <div class="carrito-items" id="carritoItems"></div>
         
-        <div class="seccion-favoritos-carrito">
-            <h3>❤️ Mis favoritos</h3>
-            <div id="favoritosItems">
-                <p class="vacio" style="font-size: 13px; color: #aaa;">No tenés favoritos guardados.</p>
-            </div>
-        </div>
-
         <p>¡Envio a coordinar!</p>
         <div class="carrito-panel-footer">
             <p>Total <span id="carritoTotal">$0</span></p>
@@ -205,7 +210,7 @@
             <div class="footer-columna">
                 <p class="footer-titulo">Tienda</p>
                 <p><a href="#catalogo">Catálogo</a></p>
-                <p><a href="#novedades">Novedades</a></p>
+                <p><a href="#seccion-slider">Novedades</a></p>
                 <p><a href="#ofertas">Ofertas</a></p>
             </div>
             <div class="footer-columna">

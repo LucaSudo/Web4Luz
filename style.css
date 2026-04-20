@@ -167,10 +167,6 @@ header{
     .menu-movil {
         display: flex;      /* permitir que se abra */
     }
-    .btn-carrito-movil {
-        display: flex;
-        align-items: center;
-    }
     .menu-movil-cuenta {
         border-top: 2px solid #D4537E;
         color: #F4C0D1 !important;
@@ -197,6 +193,11 @@ header{
         padding: 8px 10px;
         width: 100%;
     }
+    .modal-contenido {
+        padding: 20px 14px;
+        max-height: 92vh;
+        border-radius: 12px;
+    }
 }
 
 @media (max-width: 900px) {
@@ -216,15 +217,17 @@ header{
     background-color: #D4537E;
     color: #ffffff;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 28px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
+    transition: background 0.2s, transform 0.2s;
 }
-.btn-rosa:hover{
+.btn-rosa:hover {
     background-color: #993556;
 }
+.btn-rosa:disabled { background: #e8a0b8; cursor: not-allowed; }
 
 .btn-rosa-grande{
     background-color: #D4537E;
@@ -651,13 +654,6 @@ header{
     color: #ffffff;
 }
 
-@media (max-width: 700px) {
-    .modal-contenido {
-        padding: 20px 14px;
-        max-height: 92vh;
-        border-radius: 12px;
-    }
-}
 
 /* ─── SLIDER ─── */
 .seccion-slider {
@@ -963,15 +959,27 @@ header{
 
 .vacio-cuenta { text-align: center; color: #aaa; padding: 32px 0; font-size: 14px; }
 
-/* Botón corazón en tarjeta */
 .tarjeta-fav-btn {
     position: absolute; top: 8px; right: 8px;
     background: rgba(255,255,255,0.85); border: none; border-radius: 50%;
     width: 32px; height: 32px; font-size: 16px; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
-    transition: transform 0.2s;
+    transition: transform 0.2s, background 0.2s !important;
+    z-index: 5;
 }
 .tarjeta-fav-btn:hover { transform: scale(1.15); }
+
+.tarjeta-fav-btn.fav-activo {
+    background: rgba(255, 180, 200, 0.95) !important;
+    animation: heartPop 0.3s ease forwards;
+}
+
+@keyframes heartPop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.45); }
+    70%  { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
  /* LOGIN */
         .login-screen {
             min-height: 100vh;
@@ -1056,13 +1064,6 @@ header{
         .upload-area input { display: none; }
 
         /* BOTONES */
-        .btn-rosa {
-            background: #D4537E; color: white; border: none;
-            padding: 12px 28px; border-radius: 8px; cursor: pointer;
-            font-size: 14px; font-weight: bold; transition: background 0.2s;
-        }
-        .btn-rosa:hover { background: #993556; }
-        .btn-rosa:disabled { background: #e8a0b8; cursor: not-allowed; }
         .btn-peligro {
             background: white; color: #e53e3e; border: 1px solid #e53e3e;
             padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 12px;
@@ -1187,19 +1188,3 @@ header{
             .panel-body { padding: 16px; }
         }
 
-/* ─── CORAZÓN FAVORITO ACTIVO ─── */
-.tarjeta-fav-btn {
-    transition: transform 0.2s, background 0.2s !important;
-}
-.tarjeta-fav-btn.fav-activo {
-    background: rgba(255, 180, 200, 0.95) !important;
-}
-@keyframes heartPop {
-    0%   { transform: scale(1); }
-    40%  { transform: scale(1.45); }
-    70%  { transform: scale(0.9); }
-    100% { transform: scale(1); }
-}
-.tarjeta-fav-btn.fav-activo {
-    animation: heartPop 0.3s ease forwards;
-}

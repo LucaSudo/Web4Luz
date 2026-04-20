@@ -124,10 +124,7 @@ function actualizarFavoritosUI(productoId, esFav) {
         }
     });
 
-    // 2. Actualizar el panel de favoritos en el carrito (sección existente)
-    renderizarFavoritosEnCarrito();
-
-    // 3. Si el modal de cuenta está abierto y en la pestaña de favoritos, actualizarla
+    // 2. Si el modal de cuenta está abierto y en la pestaña de favoritos, actualizarla
     if (document.getElementById('modalCuenta')?.classList.contains('abierto')) {
         cargarFavoritos();
     }
@@ -161,6 +158,13 @@ function tarjetaHTML(p) {
             <button class="btn-rosa btn-agregar-carrito" ${agotado ? 'disabled' : ''}>${agotado ? 'Agotado' : 'Agregar al carrito'}</button>
         </div>
     </div>`;
+}
+
+function agregarAlCarrito(boton) {
+    const t = boton.closest('.tarjeta-producto');
+    const img = t.querySelector('.tarjeta-imagen img');
+    carrito.push({ nombre: t.dataset.nombre, precio: t.dataset.precio, imagen: img ? img.src : '' });
+    actualizarCarrito();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -219,12 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modalSubtitulo').textContent = 'Mostrando ' + filtrados.length + ' producto' + (filtrados.length !== 1 ? 's' : '');
         grid.innerHTML = filtrados.map(p => tarjetaHTML(p)).join('');
         grid.querySelectorAll('.btn-agregar-carrito').forEach(boton => {
-            boton.addEventListener('click', () => {
-                const t = boton.closest('.tarjeta-producto');
-                const img = t.querySelector('.tarjeta-imagen img');
-                carrito.push({ nombre: t.dataset.nombre, precio: t.dataset.precio, imagen: img ? img.src : '' });
-                actualizarCarrito();
-            });
+            boton.addEventListener('click', () => agregarAlCarrito(boton));
         });
     }
 
@@ -249,7 +248,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href="#ofertas"]').forEach(link => {
         link.addEventListener('click', (e) => { e.preventDefault(); abrirModalOfertas(); cerrarMenu(); });
     });
-    window.abrirModalOfertas = abrirModalOfertas;
 
     async function cargarOfertas() {
         const grid = document.getElementById('ofertasProductos');
@@ -266,12 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
             subtitulo.textContent = 'Mostrando ' + data.length + ' oferta' + (data.length !== 1 ? 's' : '');
             grid.innerHTML = data.map(p => tarjetaHTML(p)).join('');
             grid.querySelectorAll('.btn-agregar-carrito').forEach(boton => {
-                boton.addEventListener('click', () => {
-                    const t = boton.closest('.tarjeta-producto');
-                    const img = t.querySelector('.tarjeta-imagen img');
-                    carrito.push({ nombre: t.dataset.nombre, precio: t.dataset.precio, imagen: img ? img.src : '' });
-                    actualizarCarrito();
-                });
+                boton.addEventListener('click', () => agregarAlCarrito(boton));
             });
         } catch (err) {
             console.error('Error cargando ofertas:', err);
@@ -286,12 +279,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let autoTimer = null;
 
     async function cargarSlider() {
-        const data = await supabaseFetch('/rest/v1/slider?select=*&order=orden.asc');
-        if (!data || data.length === 0) return;
-        sliderTrack.innerHTML = data.map(s => `<div class="slide"><img src="${s.imagen_url}" alt="${s.caption || 'Luzbell'}">${s.caption ? `<div class="slide-caption">${s.caption}</div>` : ''}</div>`).join('');
-        const dotsContainer = document.getElementById('sliderDots');
-        dotsContainer.innerHTML = data.map((_, i) => `<span class="slider-dot ${i === 0 ? 'activo' : ''}" data-index="${i}"></span>`).join('');
-        dotsContainer.querySelectorAll('.slider-dot').forEach(dot => { dot.addEventListener('click', () => { irASlide(parseInt(dot.dataset.index)); reiniciarAuto(); }); });
+        try {
+            const data = await supabaseFetch('/rest/v1/slider?select=*&order=orden.asc');
+            if (!data || !Array.isArray(data) || data.length === 0) return;
+            sliderTrack.innerHTML = data.map(s => `<div class="slide"><img src="${s.imagen_url}" alt="${s.caption || 'Luzbell'}">${s.caption ? `<div class="slide-caption">${s.caption}</div>` : ''}</div>`).join('');
+            const dotsContainer = document.getElementById('sliderDots');
+            dotsContainer.innerHTML = data.map((_, i) => `<span class="slider-dot ${i === 0 ? 'activo' : ''}" data-index="${i}"></span>`).join('');
+            dotsContainer.querySelectorAll('.slider-dot').forEach(dot => { dot.addEventListener('click', () => { irASlide(parseInt(dot.dataset.index)); reiniciarAuto(); }); });
+            current = 0;
+            irASlide(0);
+        } catch (e) {
+            console.warn('cargarSlider: error al cargar desde Supabase, usando slides estáticos', e);
+        }
     }
 
     function irASlide(index) {
@@ -340,8 +339,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const c2 = document.getElementById('contadorCarritoMovil');
         if (c1) c1.textContent = 'Carrito (' + carrito.length + ')';
         if (c2) c2.textContent = '🛒 Carrito (' + carrito.length + ')';
-        
-        renderizarFavoritosEnCarrito();
     }
 
     function eliminarProducto(index) { 
@@ -359,54 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.open('https://wa.me/5493482233582?text=' + msg);
     });
 
-    actualizarCarrito();
-    renderizarFavoritosEnCarrito();
-});
-
-function renderizarFavoritosEnCarrito() {
-    const favContenedor = document.getElementById('favoritosItems');
-    if (!favContenedor) return;
-
-    if (favoritosIds.size === 0) {
-        favContenedor.innerHTML = '<p class="vacio" style="font-size: 13px; color: #aaa;">No tenés favoritos guardados.</p>';
-        return;
-    }
-
-    // Filtrar los productos que son favoritos
-    const favs = todosLosProductos.filter(p => favoritosIds.has(String(p.id)));
-    if (favs.length === 0) {
-        favContenedor.innerHTML = '<p class="vacio" style="font-size: 13px; color: #aaa;">Cargando favoritos...</p>';
-        return;
-    }
-
-    favContenedor.innerHTML = favs.map(p => {
-        const precio = Number(p.precio);
-        const desc = Number(p.descuento) || 0;
-        const precioFinal = desc > 0 ? Math.round(precio * (1 - desc / 100)) : precio;
-        return `
-            <div class="favorito-item-mini" style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                <img src="${p.imagen_url || 'Img/Logotienda.png'}" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">
-                <div style="flex: 1;">
-                    <p style="font-size: 13px; font-weight: bold; margin: 0;">${p.nombre}</p>
-                    <p style="font-size: 12px; color: #D4537E; margin: 0;">$${precioFinal.toLocaleString('es-AR')}</p>
-                </div>
-                <button onclick="handleFav(this, ${p.id})" style="background: none; border: none; cursor: pointer; font-size: 16px;">🗑️</button>
-            </div>
-        `;
-    }).join('');
-}
-
-
-// ─── MI CUENTA ───
-
-function abrirModalCuenta() {
-    document.getElementById('modalCuenta').classList.add('abierto');
-    document.body.style.overflow = 'hidden';
-    renderCuenta();
-}
-window.abrirModalCuenta = abrirModalCuenta;
-
-document.addEventListener('DOMContentLoaded', () => {
+    // ─── MI CUENTA ───
     document.getElementById('btnMiCuenta').addEventListener('click', abrirModalCuenta);
     document.getElementById('btnCerrarCuenta').addEventListener('click', () => {
         document.getElementById('modalCuenta').classList.remove('abierto');
@@ -419,7 +369,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     actualizarBtnCuenta();
+
+    actualizarCarrito();
 });
+
+// ─── MI CUENTA ───
+
+function abrirModalCuenta() {
+    document.getElementById('modalCuenta').classList.add('abierto');
+    document.body.style.overflow = 'hidden';
+    renderCuenta();
+}
+window.abrirModalCuenta = abrirModalCuenta;
 
 function actualizarBtnCuenta() {
     const btn = document.getElementById('btnMiCuenta');
@@ -507,8 +468,6 @@ async function fetchTodosLosProductos() {
     try {
         const data = await supabaseFetch('/rest/v1/productos?select=*');
         todosLosProductos = data || [];
-        // Actualizar UI de favoritos ahora que tenemos los datos de los productos
-        renderizarFavoritosEnCarrito();
         if (document.getElementById('modalCuenta')?.classList.contains('abierto')) {
             cargarFavoritos();
         }
@@ -705,22 +664,3 @@ async function guardarPedido(productos, total) {
         await authFetch('/rest/v1/pedidos', { method: 'POST', headers: { 'Prefer': 'return=minimal' }, body: JSON.stringify({ user_id: usuarioActual.user.id, productos: productosTexto, total }) });
     } catch(e) { console.warn('No se pudo guardar el pedido.'); }
 }
-window.guardarPedido = guardarPedido;
-
-// ─── TALLES (para admin.html) ───
-document.addEventListener('DOMContentLoaded', () => {
-    const selectCategoria = document.getElementById("prodCategoria");
-    const contenedor = document.getElementById("contenedorTalles");
-    if (!selectCategoria || !contenedor) return;
-
-    function actualizarTalles() {
-        const c = selectCategoria.value;
-        if (c === "Remeras") contenedor.innerHTML = `<label class="talle-check"><input type="checkbox" value="XS"> XS</label><label class="talle-check"><input type="checkbox" value="S"> S</label><label class="talle-check"><input type="checkbox" value="M" checked> M</label><label class="talle-check"><input type="checkbox" value="L"> L</label><label class="talle-check"><input type="checkbox" value="XL"> XL</label>`;
-        else if (c === "Pantalones") contenedor.innerHTML = `<label class="talle-check"><input type="checkbox" value="36"> 36</label><label class="talle-check"><input type="checkbox" value="38"> 38</label><label class="talle-check"><input type="checkbox" value="40" checked> 40</label><label class="talle-check"><input type="checkbox" value="42"> 42</label><label class="talle-check"><input type="checkbox" value="44"> 44</label>`;
-        else if (c === "Vestidos") contenedor.innerHTML = `<label class="talle-check"><input type="checkbox" value="XS"> XS</label><label class="talle-check"><input type="checkbox" value="S"> S</label><label class="talle-check"><input type="checkbox" value="M" checked> M</label><label class="talle-check"><input type="checkbox" value="L"> L</label>`;
-        else if (c === "Accesorios") contenedor.innerHTML = `<label class="talle-check"><input type="checkbox" value="Único" checked> Único</label>`;
-    }
-
-    selectCategoria.addEventListener("change", actualizarTalles);
-    actualizarTalles();
-});
